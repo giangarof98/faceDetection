@@ -1,5 +1,5 @@
-const video = document.getElementById('video');
-// var constraints = { video: { width: 1280, height: 720 } };
+//const video = document.getElementById('video');
+var constraints = { video: { width: 1280, height: 720 } };
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
@@ -15,7 +15,7 @@ function startVideo(){
         err => console.error(err)
     )
 }
-startVideo();
+// startVideo();
 
 video.addEventListener('play', () => {
     const canvas = faceapi.createCanvasFromMedia(video);
@@ -37,12 +37,12 @@ video.addEventListener('play', () => {
 
 //safari
 
-// navigator.mediaDevices.getUserMedia(constraints)
-// .then(function(mediaStream) {
-//     var video = document.getElementById('video');
-//     video.srcObject = mediaStream;
-//     video.onloadedmetadata = function(e) {
-//       video.play();
-//     };
-//   })
-// .catch(function(err) { console.log(err.name + ": " + err.message); })
+navigator.mediaDevices.getUserMedia(constraints)
+.then(function(mediaStream) {
+    var video = document.getElementById('video');
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = function(e) {
+      video.play();
+    };
+  })
+.catch(function(err) { console.log(err.name + ": " + err.message); })
