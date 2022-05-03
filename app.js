@@ -1,5 +1,5 @@
 //const video = document.getElementById('video');
-var constraints = { };
+var constraints = { video };
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
